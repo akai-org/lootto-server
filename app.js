@@ -7,15 +7,14 @@ const path = require("path");
 
 var cors = require("cors");
 
-var whitelist = ["http://localhost:3000", "https://lootto.netlify.com"];
+var whitelist = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://lootto.netlify.com",
+  "https://lootto.herokuapp.com"
+];
 var corsOptions = {
-  origin: function(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  }
+  origin: whitelist
 };
 
 app.use(cors(corsOptions));
