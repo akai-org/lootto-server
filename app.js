@@ -7,7 +7,7 @@ const path = require("path");
 
 var cors = require("cors");
 
-var whitelist = ["http://localhost:3000"];
+var whitelist = ["http://localhost:3000", "https://lootto.netlify.com"];
 var corsOptions = {
   origin: function(origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
