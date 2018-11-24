@@ -17,7 +17,7 @@ var corsOptions = {
   origin: whitelist
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.get("/user", (req, res) =>
   res.send(
