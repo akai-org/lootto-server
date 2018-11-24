@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const planetSchema = new mongoose.Schema({
-  planetId: {
-    type: String,
-    required: true
-  },
+  _id: mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
     required: true
@@ -20,6 +17,10 @@ const planetSchema = new mongoose.Schema({
   latitude: {
     type: Number,
     default: 0
+  },
+  chests: {
+    type: [mongoose.Schema.Types.ObjectId],
+    default: []
   }
 });
 
