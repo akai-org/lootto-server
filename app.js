@@ -5,10 +5,29 @@ const app = express();
 const port = 3001;
 const path = require("path");
 
-app.use(express.static(path.join(__dirname, "build")));
+var cors = require("cors");
+
+var whitelist = ["http://localhost:3000"];
+var corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 
 app.get("/user", (req, res) =>
-  res.send(JSON.stringify({ userId: "asdsadsa", firstName: "Stefan" }))
+  res.send(
+    JSON.stringify({
+      userId: "asdsadsa",
+      firstName: "Stefan",
+      wallet: { stars: 10 }
+    })
+  )
 );
 
 app.get("/abc", (req, res) => res.send("Hello World!"));
