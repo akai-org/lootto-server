@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const connect = require('./services/mongodb');
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 const path = require('path');
 
 var cors = require('cors');
@@ -13,6 +13,7 @@ var whitelist = [
   'https://lootto.netlify.com',
   'https://lootto.herokuapp.com'
 ];
+
 var corsOptions = {
   origin: whitelist
 };
