@@ -35,4 +35,14 @@ router.post('/', (req, res) => {
     });
 });
 
+router.get('/achievements', (req, res) =>
+  res.send(
+    JSON.stringify({
+      userId: 'asdsadsa',
+      firstName: 'Stefan',
+      wallet: { stars: 10 }
+    })
+  )
+);
+
 module.exports = router;
