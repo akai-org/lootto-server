@@ -23,30 +23,34 @@ router.post('/buy', (req, res) => {
   user.save().then((user) => res.json(user));
 });
 
-// money <-> stars exchange
-router.post('/', (req, res) => {
-  const auth = req.headers.authorization;
-  const { moneyBalance, starsBalance } = req.body;
-  const updatedProps = {
-    moneyBalance,
-    starsBalance
-  };
+router.post('/deposit', (req, res) => {
+  const { amount } = req.body;
+  const { user } = req;
 
-  User.update(
-    { facebookId: auth },
-    {
-      $set: updatedProps
-    }
-  )
-    .exec()
-    .then(result => {
-      res.status(200).json({
-        message: 'Pomyślnie dokonano wymiany'
-      });
-    })
-    .catch(error => {
-      res.status(500).json({ error });
-    });
+  if (amount <= 0) {
+    res.status(422).json({error: 'Kwota musi być dodatnia'});
+    return;
+  }
+  
+  user.moneyBalance += amount;
+  user.save().then((user) => res.json(user));
+});
+
+router.post('/withdraw', (req, res) => {
+  const { amount } = req.body;
+  const { user } = req;
+
+  if (amount <= 0) {
+    res.status(422).json({error: 'Kwota musi być dodatnia'});
+    return;
+  }
+  if (amount > user.moneyBalance) {
+    res.status(422).json({error: 'Brak wystarczających środków'});
+    return;
+  }
+  
+  user.moneyBalance -= amount;
+  user.save().then((user) => res.json(user));
 });
 
 router.get('/achievements', (req, res) => {
