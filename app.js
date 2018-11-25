@@ -60,12 +60,16 @@ connect()
 const authController = require('./controller/AuthController');
 const userController = require('./controller/UserController');
 const planetsController = require('./controller/PlanetController');
+const achievementsController = require('./controller/AchievementController');
+const powerUpsController = require('./controller/PowerUpController');
 
 const authenticate = passport.authenticate('facebook-token');
 
 app.use('/auth', authenticate, authController);
 app.use('/user', authenticate, userController);
-app.use('/planet', authenticate, planetsController);
+app.use('/planet', /*authenticate,*/ planetsController);
+app.use('/achievement', achievementsController);
+app.use('/powerUp', powerUpsController);
 
 app.get('*', function(request, response) {
   response.sendFile(path.join(__dirname, 'build/index.html'));
