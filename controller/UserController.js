@@ -53,6 +53,18 @@ router.post('/withdraw', (req, res) => {
   user.save().then(user => res.json(user));
 });
 
+router.post('/reward', (req, res) => {
+  const { wonStars } = req.body;
+  const { user } = req;
+
+  if (wonStars <= 0) {
+    res.status(422).json({ error: 'Co to za wygrana?' });
+    return;
+  }
+  user.starsBalance += wonStars;
+  user.save().then(user => res.json(user));
+});
+
 router.get('/achievements', (req, res) => {
   Achievement.find({}, (err, achievements) => {
     if (!err) {
