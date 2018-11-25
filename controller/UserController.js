@@ -10,6 +10,19 @@ router.get('/', (req, res) => {
   res.json(req.user);
 });
 
+router.post('/buy', (req, res) => {
+  const { stars, money } = req.body;
+  req.user.then((user) => {
+    if (user.moneyBalance < stars) {
+      throw new Error('Brak wystarczających środków');
+    }
+    user.starsBalance += stars;
+    user.moneyBalance -= money;
+    return user.save();
+  }).then((user) => res.json(user))
+    .catch((error) => res.status(422, error.message));
+});
+
 // money <-> stars exchange
 router.post('/', (req, res) => {
   const auth = req.headers.authorization;
