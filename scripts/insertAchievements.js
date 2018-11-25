@@ -1,14 +1,17 @@
-const products = require('../resources/achievements.json');
-const Database = require('../services/mongodb');
-const connect = require('mongoose');
-
-const db = new Database();
+const achievements = require('../resources/achievements.json');
+const connect = require('../services/mongodb');
+const Achievement = require('../models/achievement');
 
 connect()
   .then(db => {
     console.log('connected to mongodb');
     achievements.forEach(achievement => {
-      db.addProduct(product);
+      Achievement.create({
+        name: achievement.name,
+        description: achievement.description,
+        imageUrl: achievement.imageUrl,
+        reward: achievement.reward
+      });
     });
   })
   .catch(err => {
