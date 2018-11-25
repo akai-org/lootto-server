@@ -24,10 +24,10 @@ router.get('/', (req, res, next) => {
 
 // get certain planet
 router.get('/:planetId', (req, res, next) => {
-  Planet.findOne({ _id: req.params.planetId })
-    .exec()
+  Planet.findById(req.params.planetId)
+    .populate('chests')
     .then(planet => {
-      res.status(200).json(planet);
+      res.status(200).json(planet.chests);
     })
     .catch(error => {
       console.error(error);
