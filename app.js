@@ -24,7 +24,7 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
-// app.use(passport.initialize({ session: false }));
+app.use(passport.initialize({ session: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
