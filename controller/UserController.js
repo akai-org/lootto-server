@@ -12,15 +12,15 @@ router.get('/', (req, res) => {
 
 router.post('/buy', (req, res) => {
   const { stars, money } = req.body;
-  req.user.then((user) => {
-    if (user.moneyBalance < stars) {
-      throw new Error('Brak wystarczających środków');
-    }
-    user.starsBalance += stars;
-    user.moneyBalance -= money;
-    return user.save();
-  }).then((user) => res.json(user))
-    .catch((error) => res.status(422, error.message));
+  const { user } = req;
+  
+  if (user.moneyBalance < stars) {
+    res.status(422).json({error: 'Brak wystarczających środków'});
+    return;
+  }
+  user.starsBalance += stars;
+  user.moneyBalance -= money;
+  user.save().then((user) => res.json(user));
 });
 
 // money <-> stars exchange
