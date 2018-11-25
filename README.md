@@ -1,6 +1,8 @@
 ## Before we start
 
-We have two repositories, client and server: - https://github.com/akai-org/lootto-client - https://github.com/akai-org/lootto-server
+We have two repositories, client and server: 
+- https://github.com/akai-org/lootto-client 
+- https://github.com/akai-org/lootto-server
 
 ## Requirements
 
