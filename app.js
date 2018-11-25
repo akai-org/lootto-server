@@ -2,9 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const connect = require('./services/mongodb');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
 const app = express();
 const port = process.env.PORT || 3001;
 const path = require('path');
+
+require('./services/facebook');
 
 var cors = require('cors');
 
@@ -20,10 +24,27 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(passport.initialize({ session: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
-//database
+app.use((req, res, next) => {
+  const { token } = req.cookies;
+  if (token) {
+    req.headers.authorization = `Bearer ${token}`;
+  }
+  next();
+});
+
+app.post('/register', (req, res) => {
+  res.send(
+    JSON.stringify({
+      ok: true
+    })
+  );
+});
+
 connect()
   .then(db => {
     console.log('connected to mongodb');
@@ -36,11 +57,15 @@ connect()
   });
 
 // routes
+const authController = require('./controller/AuthController');
 const userController = require('./controller/UserController');
 const planetsController = require('./controller/PlanetController');
 
-app.use('/user', userController);
-app.use('/planet', planetsController);
+const authenticate = passport.authenticate('facebook-token');
+
+app.use('/auth', authenticate, authController);
+app.use('/user', authenticate, userController);
+app.use('/planet', authenticate, planetsController);
 
 app.get('*', function(request, response) {
   response.sendFile(path.join(__dirname, 'build/index.html'));

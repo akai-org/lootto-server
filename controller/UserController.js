@@ -2,18 +2,13 @@ const mongoose = require('mongoose');
 const express = require('express');
 
 const User = require('../models/user');
+const Achievement = require('../models/achievement');
 
 const router = express.Router();
 
-router.get('/', (req, res) =>
-  res.send(
-    JSON.stringify({
-      userId: 'asdsadsa',
-      firstName: 'Stefan',
-      wallet: { stars: 10 }
-    })
-  )
-);
+router.get('/', (req, res) => {
+  res.json(req.user);
+});
 
 // money <-> stars exchange
 router.post('/', (req, res) => {
@@ -39,6 +34,14 @@ router.post('/', (req, res) => {
     .catch(error => {
       res.status(500).json({ error });
     });
+});
+
+router.get('/achievements', (req, res) => {
+  Achievement.find({}, (err, achievements) => {
+    if (!err) {
+      res.send(achievements);
+    }
+  });
 });
 
 module.exports = router;
