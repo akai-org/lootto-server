@@ -63,8 +63,8 @@ const planetsController = require('./controller/PlanetController');
 
 const authenticate = passport.authenticate('facebook-token');
 
-app.use('/auth', authController);
-app.use('/user', userController);
+app.use('/auth', authenticate, authController);
+app.use('/user', authenticate, userController);
 app.use('/planet', authenticate, planetsController);
 
 app.get('*', function(request, response) {
