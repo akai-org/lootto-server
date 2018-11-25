@@ -98,14 +98,15 @@ router.post('/addblob', (req, res) => {
   Array(6)
     .fill(1)
     .map(_ => {
-      const id = generateChest(6);
+      const chests = generateChest(6);
+      const id = String(mongoose.Types.ObjectId());
       const p = new Planet({
-        _id: mongoose.Types.ObjectId(),
-        name: mongoose.Types.ObjectId(),
+        _id: id,
+        name: `skrzynka-${id.substring(id.length - 8)}`,
         type: `planet${Math.floor(Math.random() * 2) + 1}`,
-        longitude: req.body.longitude + (Math.random() - 0.5) * 0.1,
-        latitude: req.body.latitude + (Math.random() - 0.5) * 0.1,
-        chests: id
+        longitude: req.body.longitude + (Math.random() - 0.5) * 1,
+        latitude: req.body.latitude + (Math.random() - 0.5) * 1,
+        chests: chests
       });
       p.save()
         .then(result => {

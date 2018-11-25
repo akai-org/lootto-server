@@ -61,7 +61,7 @@ const authController = require('./controller/AuthController');
 const userController = require('./controller/UserController');
 const planetsController = require('./controller/PlanetController');
 const achievementsController = require('./controller/AchievementController');
-const powerUpsController = require('./controller/powerUpController');
+const powerUpsController = require('./controller/PowerUpController');
 
 const authenticate = passport.authenticate('facebook-token');
 
