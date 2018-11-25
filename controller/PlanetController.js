@@ -24,7 +24,7 @@ router.get('/', (req, res, next) => {
 
 // get certain planet
 router.get('/:planetId', (req, res, next) => {
-  Planet.find({ _id: req.params.planetId })
+  Planet.findOne({ _id: req.params.planetId })
     .exec()
     .then(planet => {
       res.status(200).json(planet);
@@ -41,9 +41,11 @@ const generateChest = num => {
   return Array(num)
     .fill(1)
     .map(_ => {
+      const id = mongoose.Types.ObjectId();
       const chest = new Chest({
-        _id: mongoose.Types.ObjectId(),
-        type: `chest${Math.floor(Math.random() * 5)}`
+        _id: id,
+        type: `chest${Math.floor(Math.random() * 5)}`,
+        name: `chest-${String(id).substring(String(id).length - 8)}`
       });
       chest.save().then(res => {});
       return chest;
@@ -99,10 +101,10 @@ router.post('/addblob', (req, res) => {
     .fill(1)
     .map(_ => {
       const chests = generateChest(6);
-      const id = String(mongoose.Types.ObjectId());
+      const id = mongoose.Types.ObjectId();
       const p = new Planet({
         _id: id,
-        name: `skrzynka-${id.substring(id.length - 8)}`,
+        name: `planeta-${String(id).substring(String(id).length - 8)}`,
         type: `planet${Math.floor(Math.random() * 2) + 1}`,
         longitude: req.body.longitude + (Math.random() - 0.5) * 1,
         latitude: req.body.latitude + (Math.random() - 0.5) * 1,
