@@ -1,16 +1,16 @@
-require('dotenv').config();
-const express = require('express');
-const connect = require('./services/mongodb');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const passport = require('passport');
+require("dotenv").config();
+const express = require("express");
+const connect = require("./services/mongodb");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const passport = require("passport");
 const app = express();
 const port = process.env.PORT || 3001;
 const path = require("path");
 
-require('./services/facebook');
+require("./services/facebook");
 
-var cors = require('cors');
+var cors = require("cors");
 
 var whitelist = [
   "http://localhost:3000",
@@ -24,7 +24,7 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(passport.initialize({ session: false }));
+// app.use(passport.initialize({ session: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -57,15 +57,15 @@ connect()
   });
 
 // routes
-const authController = require('./controller/AuthController');
-const userController = require('./controller/UserController');
-const planetsController = require('./controller/PlanetController');
+const authController = require("./controller/AuthController");
+const userController = require("./controller/UserController");
+const planetsController = require("./controller/PlanetController");
 
-const authenticate = passport.authenticate('facebook-token');
+const authenticate = passport.authenticate("facebook-token");
 
-app.use('/auth', authenticate, authController);
-app.use('/user', authenticate, userController);
-app.use('/planet', authenticate, planetsController);
+app.use("/auth", authenticate, authController);
+app.use("/user", authenticate, userController);
+app.use("/planet", /*authenticate,*/ planetsController);
 
 app.get("*", function(request, response) {
   response.sendFile(path.join(__dirname, "build/index.html"));
