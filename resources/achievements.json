@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Lojalny",
+    "description": "Zaloguj się dwa dni z rzędu",
+    "imageUrl": "",
+    "reward": ""
+  },
+  {
+    "name": "Wytrwały",
+    "description": "Zaloguj się do aplikacji przez pięć dni z rzędu",
+    "imageUrl": "",
+    "reward": "5"
+  },
+  {
+    "name": "Szalenie wierny",
+    "description": "Zaloguj się do aplikacji przez pięćdziesiąt dni z rzędu",
+    "imageUrl": "",
+    "reward": "10"
+  },
+  {
+    "name": "Drapacz",
+    "description": "Pomyślnie zdrap swoją pierwszą zdrapkę",
+    "imageUrl": "",
+    "reward": ""
+  },
+  {
+    "name": "Giermek",
+    "description": "Zaproś znajomego do gry",
+    "imageUrl": "",
+    "reward": "5"
+  },
+  {
+    "name": "Wpływowy człowiek",
+    "description": "Zaproś pięciu znajomych do gry",
+    "imageUrl": "",
+    "reward": "10"
+  },
+  {
+    "name": "Nadzieja społeczeństwa",
+    "description": "Zaproś dwudziestu znajomych do gry",
+    "imageUrl": "",
+    "reward": "20"
+  },
+  {
+    "name": "Determinacja",
+    "description": "Zdrap dwie zdrapki dziennie",
+    "imageUrl": "",
+    "reward": "5"
+  },
+  {
+    "name": "Byłem tu pierwszy",
+    "description": "Udowodnij, że byłeś na księżycu przed Neilem Armstrongiem",
+    "imageUrl": "",
+    "reward": "50"
+  }
+]
