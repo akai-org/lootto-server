@@ -2,55 +2,55 @@
   {
     "name": "Lojalny",
     "description": "Zaloguj się dwa dni z rzędu",
-    "imageUrl": "",
+    "imageUrl": "/images/trophy-red.png",
     "reward": ""
   },
   {
     "name": "Wytrwały",
     "description": "Zaloguj się do aplikacji przez pięć dni z rzędu",
-    "imageUrl": "",
+    "imageUrl": "/images/trophy-red.png",
     "reward": "5"
   },
   {
     "name": "Szalenie wierny",
     "description": "Zaloguj się do aplikacji przez pięćdziesiąt dni z rzędu",
-    "imageUrl": "",
+    "imageUrl": "/images/trophy-purple.png",
     "reward": "10"
   },
   {
     "name": "Drapacz",
     "description": "Pomyślnie zdrap swoją pierwszą zdrapkę",
-    "imageUrl": "",
+    "imageUrl": "/images/trophy-red.png",
     "reward": ""
   },
   {
     "name": "Giermek",
     "description": "Zaproś znajomego do gry",
-    "imageUrl": "",
+    "imageUrl": "/images/cup.png",
     "reward": "5"
   },
   {
     "name": "Wpływowy człowiek",
     "description": "Zaproś pięciu znajomych do gry",
-    "imageUrl": "",
+    "imageUrl": "/images/cup.png",
     "reward": "10"
   },
   {
     "name": "Nadzieja społeczeństwa",
     "description": "Zaproś dwudziestu znajomych do gry",
-    "imageUrl": "",
+    "imageUrl": "/images/cup.png",
     "reward": "20"
   },
   {
     "name": "Determinacja",
     "description": "Zdrap dwie zdrapki dziennie",
-    "imageUrl": "",
+    "imageUrl": "/images/trophy-red.png",
     "reward": "5"
   },
   {
     "name": "Byłem tu pierwszy",
     "description": "Udowodnij, że byłeś na księżycu przed Neilem Armstrongiem",
-    "imageUrl": "",
+    "imageUrl": "/images/trophy-purple.png",
     "reward": "50"
   }
 ]
