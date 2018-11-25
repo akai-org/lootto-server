@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Chest = require('./chest');
 
 const planetSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -19,8 +20,8 @@ const planetSchema = new mongoose.Schema({
     default: 0
   },
   chests: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: []
+    type: [Chest.schema],
+    default: undefined
   }
 });
 
