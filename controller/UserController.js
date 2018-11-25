@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
 router.post('/buy', (req, res) => {
   const { stars, money } = req.body;
   const { user } = req;
-  
+
   if (user.moneyBalance < stars) {
-    res.status(422).json({error: 'Brak wystarczających środków'});
+    res.status(422).json({ error: 'Brak wystarczających środków' });
     return;
   }
   user.starsBalance += stars;
   user.moneyBalance -= money;
-  user.save().then((user) => res.json(user));
+  user.save().then(user => res.json(user));
 });
 
 router.post('/deposit', (req, res) => {
@@ -28,12 +28,12 @@ router.post('/deposit', (req, res) => {
   const { user } = req;
 
   if (amount <= 0) {
-    res.status(422).json({error: 'Kwota musi być dodatnia'});
+    res.status(422).json({ error: 'Kwota musi być dodatnia' });
     return;
   }
-  
+
   user.moneyBalance += amount;
-  user.save().then((user) => res.json(user));
+  user.save().then(user => res.json(user));
 });
 
 router.post('/withdraw', (req, res) => {
@@ -41,16 +41,16 @@ router.post('/withdraw', (req, res) => {
   const { user } = req;
 
   if (amount <= 0) {
-    res.status(422).json({error: 'Kwota musi być dodatnia'});
+    res.status(422).json({ error: 'Kwota musi być dodatnia' });
     return;
   }
   if (amount > user.moneyBalance) {
-    res.status(422).json({error: 'Brak wystarczających środków'});
+    res.status(422).json({ error: 'Brak wystarczających środków' });
     return;
   }
-  
+
   user.moneyBalance -= amount;
-  user.save().then((user) => res.json(user));
+  user.save().then(user => res.json(user));
 });
 
 router.get('/achievements', (req, res) => {

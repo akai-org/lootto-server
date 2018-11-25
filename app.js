@@ -67,7 +67,7 @@ const authenticate = passport.authenticate('facebook-token');
 
 app.use('/auth', authenticate, authController);
 app.use('/user', authenticate, userController);
-app.use('/planet', /*authenticate,*/ planetsController);
+app.use('/planet', authenticate, planetsController);
 app.use('/achievement', achievementsController);
 app.use('/powerUp', powerUpsController);
 
