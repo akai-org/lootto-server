@@ -6,17 +6,17 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const app = express();
 const port = process.env.PORT || 3001;
-const path = require("path");
+const path = require('path');
 
 require('./services/facebook');
 
 var cors = require('cors');
 
 var whitelist = [
-  "http://localhost:3000",
-  "http://localhost:3001",
-  "https://lootto.netlify.com",
-  "https://lootto.herokuapp.com"
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://lootto.netlify.com',
+  'https://lootto.herokuapp.com'
 ];
 
 var corsOptions = {
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/register", (req, res) => {
+app.post('/register', (req, res) => {
   res.send(
     JSON.stringify({
       ok: true
@@ -47,13 +47,13 @@ app.post("/register", (req, res) => {
 
 connect()
   .then(db => {
-    console.log("connected to mongodb");
+    console.log('connected to mongodb');
     app.listen(port, () =>
       console.log(`Example app listening on port ${port}!`)
     );
   })
   .catch(err => {
-    console.error("mongodb connection failed", err);
+    console.error('mongodb connection failed', err);
   });
 
 // routes
@@ -64,9 +64,9 @@ const planetsController = require('./controller/PlanetController');
 const authenticate = passport.authenticate('facebook-token');
 
 app.use('/auth', authController);
-app.use('/user', authenticate, userController);
+app.use('/user', userController);
 app.use('/planet', authenticate, planetsController);
 
-app.get("*", function(request, response) {
-  response.sendFile(path.join(__dirname, "build/index.html"));
+app.get('*', function(request, response) {
+  response.sendFile(path.join(__dirname, 'build/index.html'));
 });
