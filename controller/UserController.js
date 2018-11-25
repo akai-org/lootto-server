@@ -5,15 +5,9 @@ const User = require('../models/user');
 
 const router = express.Router();
 
-router.get('/', (req, res) =>
-  res.send(
-    JSON.stringify({
-      userId: 'asdsadsa',
-      firstName: 'Stefan',
-      wallet: { stars: 10 }
-    })
-  )
-);
+router.get('/', (req, res) => {
+  res.json(req.user);
+});
 
 // money <-> stars exchange
 router.post('/', (req, res) => {
