@@ -7,9 +7,11 @@ passport.use(new FacebookTokenStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET
   }, (accessToken, refreshToken, profile, done) => {
+    console.log(profile);
     const fbid = { facebookId: profile.id };
     User.findOne(fbid)
     .then(async (user) => {
+      console.log(user);
       if (!user) {
         user = new User(fbid);
         user.name = profile.displayName;
@@ -17,7 +19,7 @@ passport.use(new FacebookTokenStrategy({
         await user.save();
       }
       done(null, user);
-    }).catch((err) => done(err, null));
+    }).catch((err) => {console.error(err); done(err, null)});
   }
 ));
 
